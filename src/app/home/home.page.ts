@@ -6,12 +6,13 @@ import { HttpService } from '../services/http-service';
 import { HttpOptions } from '@capacitor/core';
 import { FormsModule } from '@angular/forms';
 import { NgFor } from '@angular/common';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
-  imports: [IonCardContent, IonCardTitle, IonCardHeader, IonCard, IonButton, IonButtons, IonHeader, IonToolbar, IonTitle, IonContent, IonIcon, IonItem, IonInput, FormsModule, NgFor],
+  imports: [IonCardContent, IonCardTitle, IonCardHeader, IonCard, IonButton, IonButtons, IonHeader, IonToolbar, IonTitle, IonContent, IonIcon, IonItem, IonInput, FormsModule, NgFor, RouterLink],
 })
 export class HomePage {
 
