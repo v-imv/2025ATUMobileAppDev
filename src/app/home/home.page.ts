@@ -1,16 +1,17 @@
 import { Component } from '@angular/core';
-import { IonHeader, IonToolbar, IonTitle, IonContent, IonIcon, IonButtons, IonButton, IonInput, IonItem, IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent } from '@ionic/angular/standalone';
+import { IonHeader, IonToolbar, IonTitle, IonContent, IonIcon, IonButtons, IonButton, IonInput, IonItem, IonCard, IonCardHeader, IonCardTitle, IonCardContent } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import { settingsOutline, heart } from 'ionicons/icons';
 import { HttpService } from '../services/http-service';
 import { HttpOptions } from '@capacitor/core';
 import { FormsModule } from '@angular/forms';
+import { NgFor } from '@angular/common';
 
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
-  imports: [IonCardContent, IonCardSubtitle, IonCardTitle, IonCardHeader, IonCard, IonButton, IonButtons, IonHeader, IonToolbar, IonTitle, IonContent, IonIcon, IonItem, IonInput, FormsModule],
+  imports: [IonCardContent, IonCardTitle, IonCardHeader, IonCard, IonButton, IonButtons, IonHeader, IonToolbar, IonTitle, IonContent, IonIcon, IonItem, IonInput, FormsModule, NgFor],
 })
 export class HomePage {
 
@@ -19,18 +20,20 @@ export class HomePage {
   }
 
   searchText: string = "";
+  searchUrl: string = "https://api.spoonacular.com/recipes/complexSearch?apiKey=70759a4f7911402abcc53d3c51d3b759&query=";
   apiResults: any;
 
   options: HttpOptions = {
-    url: "https://api.spoonacular.com/recipes/complexSearch?apiKey=70759a4f7911402abcc53d3c51d3b759&query="
+    url: ""
   }
 
   async search(){
     console.log(this.searchText);
-    this.options.url += this.searchText;
+    this.options.url = this.searchUrl + this.searchText;
     console.log(this.options.url);
     let result = await this.httpService.get(this.options);
     console.log(result);
+    this.apiResults = result.data.results;
   }
 
 }
