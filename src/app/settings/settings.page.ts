@@ -17,6 +17,7 @@ export class SettingsPage implements OnInit {
 
   measurementSettingKey: string = "measurementSetting";
   measurementSettingValue: string = "";
+  defaultMeasurementSettingValue: string = "metric";
 
   ngOnInit() {
     this.determineMeasurementSettingOnInit();
@@ -27,7 +28,8 @@ export class SettingsPage implements OnInit {
     if(previousSetting){
       this.measurementSettingValue = JSON.parse(previousSetting);
     } else {
-      this.measurementSettingValue = "metric"; // default value
+      this.measurementSettingValue = this.defaultMeasurementSettingValue; // default value
+      await this.storageService.set(this.measurementSettingKey, this.defaultMeasurementSettingValue);
     }
   }
 

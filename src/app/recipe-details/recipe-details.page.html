@@ -1,9 +1,41 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>RecipeDetails</ion-title>
+    <ion-title>Recipe Details</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true" class="ion-padding">
-  <p>Placeholder</p>
+  <h2>Ingredients</h2>
+
+  <div *ngIf="apiResult">
+    <ion-card *ngFor="let ingredient of apiResult.extendedIngredients">
+      <img src="https://img.spoonacular.com/ingredients_250x250/{{ingredient.image}}" />
+      <ion-card-header>
+        <ion-card-title>{{ingredient.original}}</ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content>
+        {{ingredient.measures[measurementSetting].amount}} {{ingredient.measures[measurementSetting].unitLong}}
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+  <h3>Instructions</h3>
+
+  <div *ngIf="apiResult">
+    <div *ngFor="let instruction of apiResult.analyzedInstructions">
+      <ion-item *ngIf="instruction.name">
+        <h4>{{instruction.name}}</h4>
+      </ion-item>
+      <ion-item *ngFor="let instructionSteps of instruction.steps">
+        <ion-label>{{instructionSteps.number}}:
+          {{instructionSteps.step}}</ion-label>
+      </ion-item>
+      <br><br>
+    </div>
+  </div>
+
+  <div>
+
+  </div>
 </ion-content>
