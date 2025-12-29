@@ -19,6 +19,7 @@
       </ion-card-content>
     </ion-card>
   </div>
+  <br><br>
 
   <h3>Instructions</h3>
 
@@ -36,6 +37,13 @@
   </div>
 
   <div>
-
+    <ion-button *ngIf="!isFavourite" (click)="addToFavourites(apiResult.id, apiResult.image)" fill="outline">
+      <ion-icon slot="start" name="heart"></ion-icon>
+      Add To Favourites
+    </ion-button>
+    <ion-button *ngIf="isFavourite" (click)="removeFromFavourites(apiResult.id)">
+      <ion-icon slot="start" name="heart"></ion-icon>
+      Remove From Favourites
+    </ion-button>
   </div>
 </ion-content>
