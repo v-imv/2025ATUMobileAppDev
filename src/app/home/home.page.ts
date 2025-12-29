@@ -29,11 +29,8 @@ export class HomePage {
   }
 
   async search(){
-    console.log(this.searchText);
     this.options.url = this.searchUrl + this.searchText;
-    console.log(this.options.url);
     let result = await this.httpService.get(this.options);
-    console.log(result);
     this.apiResults = result.data.results;
   }
 
