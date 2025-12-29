@@ -5,5 +5,16 @@
 </ion-header>
 
 <ion-content [fullscreen]="true" class="ion-padding">
-  <p>Placeholder</p>
+  <div *ngIf="favouritesData.length">
+    <ion-card *ngFor="let favourite of favouritesData">
+      <img src="{{favourite.imageUrl}}" />
+
+      <ion-card-content>
+        <ion-button routerLink="/recipe-details/{{favourite.id}}">Details</ion-button>
+      </ion-card-content>
+    </ion-card>
+  </div>
+  <div *ngIf="!favouritesData.length">
+    <h2>No favourites yet.</h2>
+  </div>
 </ion-content>
